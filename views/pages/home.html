@@ -1,0 +1,48 @@
+{{define "content"}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Welcome Stranger</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="card">
+                <div class="card-header">
+                    What would you like to get done?
+                </div>
+                <div class="card-body">
+                    <form hx-post="/todos" hx-target="#todo-list" hx-swap="beforeend">
+                        <div class="input-group">
+                            <input name="item" type="text" class="form-control" />
+                            <button class="btn btn-primary" type="submit">Add Todo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="card">
+                <div class="card-header">My Todo's</div>
+                <div id="todo-list" class="list-group list-group-flush">
+                    {{range .Items}}
+                    {{template "list-item" .}}
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{end}}
+
+{{template "base" .}}
